@@ -17,8 +17,11 @@ const __dirname = path.dirname(__filename);
 
 // ✅ Serve uploads folder statically
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use("/Static-Image", express.static(path.join(__dirname, "Static-Image")));
 
-const PORT = 5000;
+// const PORT = 5000;
+const PORT = process.env.PORT || 5000;
+
 
 // --- TRY ON API ---
 app.post("/api/tryon", async (req, res) => {
@@ -41,11 +44,15 @@ app.post("/api/tryon", async (req, res) => {
         // const localUrl = `http://localhost:${PORT}/uploads/${filename}`;
         const localUrl = `${process.env.BASE_URL || "https://virtual-fit.onrender.com"}/uploads/${filename}`;
 
+        /* const localUrl = "https://images.pexels.com/photos/1580271/pexels-photo-1580271.jpeg";
+        const styleImageUrl = "https://images.pexels.com/photos/291759/pexels-photo-291759.jpeg"; */
 
         const data = {
-            imageUrl: localUrl,
-            styleImageUrl: styleImageUrl, // already a URL from assets
+            "imageUrl": localUrl,
+            "styleImageUrl": styleImageUrl, // already a URL from assets
         };
+        console.log("data", data);
+
 
         // ✅ Send the URLs to LightX API
         const response = await axios.post(
@@ -59,7 +66,7 @@ app.post("/api/tryon", async (req, res) => {
             }
         );
 
-        console.log("✅ LightX Success:", response.data);
+        // console.log("✅ LightX Success:", response.data);
         res.json(response.data);
     } catch (err) {
         console.error("❌ Error details:", err.response?.data || err.message);
