@@ -10,6 +10,9 @@ dotenv.config();
 const app = express();
 app.use(cors());
 app.use(express.json({ limit: "10mb" }));
+// app.use(express.json({ limit: "500mb" }));
+// app.use(express.urlencoded({ limit: "500mb", extended: true }));
+
 
 // To resolve __dirname in ES modules
 const __filename = fileURLToPath(import.meta.url);
