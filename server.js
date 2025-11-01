@@ -43,8 +43,8 @@ app.post("/api/tryon", async (req, res) => {
         fs.writeFileSync(uploadPath, Buffer.from(base64Data, "base64"));
 
         // ✅ Create a local URL accessible by LightX API
-        const localUrl = `http://localhost:${PORT}/uploads/${filename}`;
-        // const localUrl = `${process.env.BASE_URL || "https://virtual-fit.onrender.com"}/uploads/${filename}`;
+        // const localUrl = `http://localhost:${PORT}/uploads/${filename}`;
+        const localUrl = `${process.env.BASE_URL || "https://virtual-fit.onrender.com"}/uploads/${filename}`;
 
         /* const localUrl = "https://images.pexels.com/photos/1580271/pexels-photo-1580271.jpeg";
         const styleImageUrl = "https://images.pexels.com/photos/291759/pexels-photo-291759.jpeg"; */
